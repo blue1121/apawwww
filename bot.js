@@ -74,7 +74,7 @@ client.on('message', async msg =>{
     msg.channel.send(embed);
     }
 });
-/////////////////////////
+/////////////
 ////////////////////////
 //////////////////////
 client.on('message', async msg =>{
