@@ -343,11 +343,9 @@ function play(guild, song) {
 client.on('message', message => {
     if (message.content === 'm-help') {
         let helpEmbed = new Discord.RichEmbed()
-        .setTitle('**أوامر الميوزك...**')
-        .setDescription('**برفكس البوت (-)**')
+        .setTitle('**BlueMusic Commands...**')
+        .setDescription('**prefix(m-)**')
         .addField('play', 'لتشغيل اغنية')
-        .addField('join', 'دخول رومك الصوتي')
-        .addField('disconnect', 'الخروج من رومك الصوتي')
         .addField('skip', 'تخطي الأغنية')
         .addField('pause', 'ايقاف الاغنية مؤقتا')
         .addField('resume', 'تكملة الاغنية')
@@ -366,7 +364,7 @@ client.on('message', message => {
         let embed = new Discord.RichEmbed()
         .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
         .setTitle(`:small_orange_diamond: Click Here `)
-        .setURL(`https://discordapp.com/oauth2/authorize?client_id=483499229407477762&permissions=8&scope=bot`)        
+        .setURL(`https://discordapp.com/oauth2/authorize?client_id=487716259488727040&permissions=8&scope=bot`)        
      message.channel.sendEmbed(embed);
        }
    }); 
