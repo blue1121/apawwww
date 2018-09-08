@@ -359,8 +359,74 @@ client.on('message', message => {
 });
 
 
+client.on('message', message => {
+	if(message.author.bot) return;
+	if(message.channel.type === 'dm') return;
+        if (message.content === "m-invite") {
+        let embed = new Discord.RichEmbed()
+        .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
+        .setTitle(`:small_orange_diamond: Click Here `)
+        .setURL(`https://discordapp.com/oauth2/authorize?client_id=483499229407477762&permissions=8&scope=bot`)        
+     message.channel.sendEmbed(embed);
+       }
+   }); 
 
 
+
+client.on('message', message => {
+	if(message.author.bot) return;
+     if (message.content === "m-support") {
+     let embed = new Discord.RichEmbed()
+  .setAuthor(message.author.username)
+  .setColor("#9B59B6")
+  .addField("  :gear: Server Support :gear: " , "  https://discord.gg/p4xQ6jv")
+
+
+  message.channel.sendEmbed(embed);
+    }
+}); 
+
+
+
+client.on('guildCreate', guild => {
+  client.channels.get("487983419494498304").send(`:white_check_mark: **تم اضافة البوت في سيرفر جديد مبروكك
+Server name: __${guild.name}__
+Server owner: __${guild.owner}__
+Server id: __${guild.id}__ 
+Server Count: __${guild.memberCount}__**`)
+});
+client.on('guildDelete', guild => {
+  client.channels.get("487983419494498304").send(`:negative_squared_cross_mark: **طردوني حرام والله ايش سويت انا
+Server name: __${guild.name}__
+Server owner: __${guild.owner}__
+Server id: __${guild.id}__ 
+Server Count: __${guild.memberCount}__**`)
+});
+
+
+
+client.on('message', message => {
+    if (message.author.bot) return;
+    if (message.content.startsWith("m-bot")) {
+    message.channel.send({
+        embed: new Discord.RichEmbed()
+            .setAuthor(client.user.username,client.user.avatarURL)
+            .setThumbnail(client.user.avatarURL)
+            .setColor('RANDOM')
+            .setTitle('``INFO BlueMusic`` ')
+            .addField('``My Ping``' , [`${Date.now() - message.createdTimestamp}` + 'MS'], true)
+            .addField('``RAM Usage``', `[${(process.memoryUsage().rss / 1048576).toFixed()}MB]`, true)
+            .addField('``servers``', [client.guilds.size], true)
+            .addField('``channels``' , `[ ${client.channels.size} ]` , true)
+            .addField('``Users``' ,`[ ${client.users.size} ]` , true)
+            .addField('``My Name``' , `[ ${client.user.tag} ]` , true)
+            .addField('``My ID``' , `[ ${client.user.id} ]` , true)
+                  .addField('``My Prefix``' , `[m-]` , true)
+                  .addField('``My Language``' , `[ Java Script ]` , true)
+                  .setFooter('By | iiBlueGamer295YT| SK ♕')
+    })
+}
+});
 
 
 
