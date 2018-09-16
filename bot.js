@@ -427,8 +427,17 @@ client.on('message', message => {
 });
 
 
-const Discord = require('discord.js');
-//ALPHA CODES
+
+
+
+
+
+
+
+
+
+
+
 client.on('message', message=> {
   if(message.content.startsWith('m-BotTime')) { //ALPHA CODES
     let ms = client.uptime; //ALPHA CODES
