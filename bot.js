@@ -347,10 +347,13 @@ client.on('message', message => {
         .setDescription('**prefix(m-)**')
         .addField('play', 'لتشغيل اغنية')
         .addField('skip', 'تخطي الأغنية')
+        .addField('vol', 'للتحكم بالصوت')
         .addField('pause', 'ايقاف الاغنية مؤقتا')
         .addField('resume', 'تكملة الاغنية')
         .addField('queue', 'اظهار قائمة التشغيل')
         .addField('np', 'اظهار الاغنية اللي انت مشغلها حاليا')
+        .addField('invite', 'لاضافة البوت')
+        .addField('support', 'لرابط سيرفر السبورت')
         .setFooter('By : iiBlueGamer295YT| SK ♕#0548')
       message.channel.send(helpEmbed);
     }
@@ -425,80 +428,6 @@ client.on('message', message => {
     })
 }
 });
-
-client.on('message', message=> {
-  if(message.content.startsWith('m-BotTime')) { //ALPHA CODES
-    let ms = client.uptime; //ALPHA CODES
-    let cd = 24 * 60 * 60 * 1000; //ALPHA CODES
-    let ch = 60 * 60 * 1000;
-    let cm = 60 * 1000;  //ALPHA CODES
-    let cs = 1000;
-    let days = Math.floor(ms / cd);
-    let dms = days * cd;
-    let hours = Math.floor((ms - dms) / ch);
-    let hms = hours * ch;
-    let minutes = Math.floor((ms - dms - hms) / cm); //ALPHA CODES
-    let mms = minutes * cm;
-    let seconds = Math.round((ms - dms - hms - mms) / cs);
-    if (seconds === 60) {
-        minutes++;
-        seconds = 0;
-    }
-    if (minutes === 60) {
-        hours++;
-        minutes = 0;
-    }
-    if (hours === 24) {
-        days++;  //ALPHA CODES
-        hours = 0;
-    }
-    let dateStrings = [];
- 
-    if (days === 1) {
-        dateStrings.push('**1** day');
-    } else if (days > 1) {
-        dateStrings.push('**' + String(days) + '** days');
-    }
- 
-    if (hours === 1) {
-        dateStrings.push('**1** hour');
-    } else if (hours > 1) {
-        dateStrings.push('**' + String(hours) + '** hours');
-    }
- 
-    if (minutes === 1) {
-        dateStrings.push('**1** minute');
-    } else if (minutes > 1) {
-        dateStrings.push('**' + String(minutes) + '** minutes');
-    }
- 
-    if (seconds === 1) {
-        dateStrings.push('**1** second');
-    } else if (seconds > 1) {
-        dateStrings.push('**' + String(seconds) + '** seconds');
-    }
-//ALPHA CODES //ALPHA CODES
-    let dateString = '';
-    for (let i = 0; i < dateStrings.length - 1; i++) {
-        dateString += dateStrings[i];
-        dateString += ', ';
-    }
-    if (dateStrings.length >= 2) {
-        dateString = dateString.slice(0, dateString.length - 2) + dateString.slice(dateString.length - 1);
-        dateString += 'and ';
-    }
-    dateString += dateStrings[dateStrings.length - 1];
-    const embed = new Discord.RichEmbed()
-  .setTimestamp()
-  .setThumbnail(message.author.iconURL) //ALPHA CODES
-  .addField(':clock: مدة تشغيل البوت', 'Bot\'s uptime', true)
-  .addField(':runner: عدد السيرفرات:', `**${client.guilds.size}** servers`, true)
-  .addField(':white_check_mark: مدة التشغيل:', dateString, true)
-  .setColor(6583245); //ALPHA CODES
-    message.channel.send({embed})
-  .catch(console.error);
-}})
-
 
 
 
