@@ -348,6 +348,7 @@ client.on('message', message => {
         .addField('play', 'لتشغيل اغنية')
         .addField('skip', 'تخطي الأغنية')
         .addField('pause', 'ايقاف الاغنية مؤقتا')
+        .addField('loop', 'لتكرار الاغنية')
         .addField('resume', 'تكملة الاغنية')
         .addField('queue', 'اظهار قائمة التشغيل')
         .addField('np', 'اظهار الاغنية اللي انت مشغلها حاليا')
@@ -426,6 +427,16 @@ client.on('message', message => {
 }
 });
 
+
+client.on('message', async msg =>{
+    if(message.content.startsWith(prefix + 'loop')) {
+        if (!serverQueue) return msg.channel.send('لايوجد اغنيه لي اعادتها | ❌');
+    const alpha = new Discord.RichEmbed()
+    .setDescription(`سيتم اعاده تشغيل الفديو :**${serverQueue.songs[0].title}**`)
+    msg.channel.send({embed: alpha})
+    return handleVideo(video, msg, msg.member.voiceChannel);
+    }
+});
 
 
 
