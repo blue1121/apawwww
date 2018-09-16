@@ -348,7 +348,6 @@ client.on('message', message => {
         .addField('play', 'لتشغيل اغنية')
         .addField('skip', 'تخطي الأغنية')
         .addField('pause', 'ايقاف الاغنية مؤقتا')
-        .addField('loop', 'لتكرار الاغنية')
         .addField('resume', 'تكملة الاغنية')
         .addField('queue', 'اظهار قائمة التشغيل')
         .addField('np', 'اظهار الاغنية اللي انت مشغلها حاليا')
@@ -428,16 +427,80 @@ client.on('message', message => {
 });
 
 
-client.on('message', async msg =>{
-    if(message.content.startsWith(prefix + 'loop')) {
-        if (!serverQueue) return msg.channel.send('لايوجد اغنيه لي اعادتها | ❌');
-    const alpha = new Discord.RichEmbed()
-    .setDescription(`سيتم اعاده تشغيل الفديو :**${serverQueue.songs[0].title}**`)
-    msg.channel.send({embed: alpha})
-    return handleVideo(video, msg, msg.member.voiceChannel);
+const Discord = require('discord.js');
+//ALPHA CODES
+client.on('message', message=> {
+  if(message.content.startsWith('m-BotTime')) { //ALPHA CODES
+    let ms = client.uptime; //ALPHA CODES
+    let cd = 24 * 60 * 60 * 1000; //ALPHA CODES
+    let ch = 60 * 60 * 1000;
+    let cm = 60 * 1000;  //ALPHA CODES
+    let cs = 1000;
+    let days = Math.floor(ms / cd);
+    let dms = days * cd;
+    let hours = Math.floor((ms - dms) / ch);
+    let hms = hours * ch;
+    let minutes = Math.floor((ms - dms - hms) / cm); //ALPHA CODES
+    let mms = minutes * cm;
+    let seconds = Math.round((ms - dms - hms - mms) / cs);
+    if (seconds === 60) {
+        minutes++;
+        seconds = 0;
     }
-});
-
+    if (minutes === 60) {
+        hours++;
+        minutes = 0;
+    }
+    if (hours === 24) {
+        days++;  //ALPHA CODES
+        hours = 0;
+    }
+    let dateStrings = [];
+ 
+    if (days === 1) {
+        dateStrings.push('**1** day');
+    } else if (days > 1) {
+        dateStrings.push('**' + String(days) + '** days');
+    }
+ 
+    if (hours === 1) {
+        dateStrings.push('**1** hour');
+    } else if (hours > 1) {
+        dateStrings.push('**' + String(hours) + '** hours');
+    }
+ 
+    if (minutes === 1) {
+        dateStrings.push('**1** minute');
+    } else if (minutes > 1) {
+        dateStrings.push('**' + String(minutes) + '** minutes');
+    }
+ 
+    if (seconds === 1) {
+        dateStrings.push('**1** second');
+    } else if (seconds > 1) {
+        dateStrings.push('**' + String(seconds) + '** seconds');
+    }
+//ALPHA CODES //ALPHA CODES
+    let dateString = '';
+    for (let i = 0; i < dateStrings.length - 1; i++) {
+        dateString += dateStrings[i];
+        dateString += ', ';
+    }
+    if (dateStrings.length >= 2) {
+        dateString = dateString.slice(0, dateString.length - 2) + dateString.slice(dateString.length - 1);
+        dateString += 'and ';
+    }
+    dateString += dateStrings[dateStrings.length - 1];
+    const embed = new Discord.RichEmbed()
+  .setTimestamp()
+  .setThumbnail(message.author.iconURL) //ALPHA CODES
+  .addField(':clock: مدة تشغيل البوت', 'Bot\'s uptime', true)
+  .addField(':runner: عدد السيرفرات:', `**${client.guilds.size}** servers`, true)
+  .addField(':white_check_mark: مدة التشغيل:', dateString, true)
+  .setColor(6583245); //ALPHA CODES
+    message.channel.send({embed})
+  .catch(console.error);
+}})
 
 
 
