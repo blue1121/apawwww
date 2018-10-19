@@ -430,5 +430,25 @@ client.on('message', message => {
 });
 
 
+cmds.repeat = {
+    name: `repeat`,
+    help: `Make the bot repeat the current song until you turn it off.`,
+    trigger: ({ client, msg, params, raw, clean }) => {
+        let Player = Players().get(msg.guild.id);
+        if (!Player) return msg.channel.send({ embed: { title: `Illusion Music`, color: 16711680, description: `I'm currently not playing in this server, play something with \`${config.discord.prefix}play <YouTube Link>\` and try again`, footer: { text: `Illusion Music`, icon_url: client.user.avatarURL() }, timestamp: new Date() } });
+        if (!msg.guild.me.voice.channel) return msg.channel.send({ embed: { title: `Illusion Music`, color: 16711680, description: `Something went wrong, I cannot detect my current voice channel, try again later`, footer: { text: `Illusion Music`, icon_url: client.user.avatarURL() }, timestamp: new Date() } });
+        if (!msg.member.voice.channel) return msg.channel.send({ embed: { title: `Illusion Music`, color: 16711680, description: `You must be in a voice channel to use the play command`, footer: { text: `Illusion Music`, icon_url: client.user.avatarURL() }, timestamp: new Date() } });
+        if (msg.member.voice.channel != msg.guild.me.voice.channel) return msg.channel.send({ embed: { title: `Illusion Music`, color: 16711680, description: `You must be in my current voice channel to use the play command`, footer: { text: `Illusion Music`, icon_url: client.user.avatarURL() }, timestamp: new Date() } });
+       
+        if (!Player.repeat) {
+            Player.repeat = true;
+            return msg.channel.send({ embed: { title: `Illusion Music`, color: 8388736, description: `Successfully enabled repeat for ${Player.playing.title}\n\nYou can turn this off by running \`${config.discord.prefix}repeat\` again`, footer: { text: `Illusion Music`, icon_url: client.user.avatarURL() } } });
+        } else {
+            Player.repeat = false;
+            return msg.channel.send({ embed: { title: `Illusion Music`, color: 8388736, description: `Successfully disabled repeat\n\nYou can turn this on by running \`${config.discord.prefix}repeat\` again`, footer: { text: `Illusion Music`, icon_url: client.user.avatarURL() } } });
+        }
+    }
+};
+
 
 client.login(process.env.BOT_TOKEN);
