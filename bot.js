@@ -28,5 +28,24 @@ client.user.setGame(`m-help | MusicBot 💙✨`,"http://twitch.tv/S-F")
   console.log('')
 });
 
+lient.on('message', msg => {
+  if (msg.content === 'm-support') {
+          msg.react("🎶")    
+let embed = new Discord.RichEmbed()
+      .setColor("BLUE")
+.setTitle(`🎶 BlueBot Support Server 🎶`)
+   .setDescription(` 
+https://discord.gg/p4xQ6jv **| 🎶 BlueBot Support Server 🎶**
+`)
+.setFooter(`${msg.guild.name}™`)
+
+
+
+msg.channel.sendEmbed(embed);        
+  }   
+ });
+
+
+
 
 client.login(process.env.BOT_TOKEN);
