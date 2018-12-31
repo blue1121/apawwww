@@ -28,7 +28,7 @@ client.user.setGame(`m-help | MusicBot 💙✨`,"http://twitch.tv/S-F")
   console.log('')
 });
 
-lient.on('message', msg => {
+client.on('message', msg => {
   if (msg.content === 'm-support') {
           msg.react("🎶")    
 let embed = new Discord.RichEmbed()
