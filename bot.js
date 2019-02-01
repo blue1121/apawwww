@@ -60,8 +60,7 @@ let embed = new Discord.RichEmbed()
       .setAuthor(` ${message.author.username} `, message.author.avatarURL)
       .setTitle(`🎶 Click To Invite BlueMusic 🎶`)
       .setURL(`https://discordapp.com/oauth2/authorize?client_id=483499229407477762&permissions=8&scope=bot`)
-      .setAuthor(` ${message.author.username} `, message.author.avatarURL)
-
+      .setFooter('${msg.guild.name}™')
 
 
 msg.channel.sendEmbed(embed);        
