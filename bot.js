@@ -49,6 +49,9 @@ msg.channel.sendEmbed(embed);
 
 
 
+
+
+
 client.on('message', msg => {
   if (msg.content === 'm-invite') {
           msg.react("🎶")    
@@ -57,7 +60,13 @@ let embed = new Discord.RichEmbed()
       .setAuthor(` ${message.author.username} `, message.author.avatarURL)
       .setTitle(`🎶 Click To Invite BlueMusic 🎶`)
       .setURL(`https://discordapp.com/oauth2/authorize?client_id=483499229407477762&permissions=8&scope=bot`)
-      .setAuthor(` ${message.author.username} `, message.author.avatarURL)      
+      .setAuthor(` ${message.author.username} `, message.author.avatarURL)
+
+
+
+msg.channel.sendEmbed(embed);        
+  }   
+ });     
 
 
 client.login(process.env.BOT_TOKEN);
