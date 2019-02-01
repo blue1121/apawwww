@@ -57,7 +57,6 @@ client.on('message', msg => {
           msg.react("🎶")    
 let embed = new Discord.RichEmbed()
       .setColor("BLUE")
-      .setAuthor(` ${message.author.username} `, message.author.avatarURL)
       .setTitle(`🎶 Click To Invite BlueMusic 🎶`)
       .setURL(`https://discordapp.com/oauth2/authorize?client_id=483499229407477762&permissions=8&scope=bot`)
       .setFooter('${msg.guild.name}™')
